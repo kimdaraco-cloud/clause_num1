@@ -1,0 +1,49 @@
+{
+  "session_id": "b998212c-4609-493f-946b-5e770a48a0c9",
+  "transcript_path": "/Users/gin/.claude/projects/-Users-gin-playground-clause-num1/b998212c-4609-493f-946b-5e770a48a0c9.jsonl",
+  "cwd": "/Users/gin/playground/clause_num1",
+  "permission_mode": "acceptEdits",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Edit",
+  "tool_input": {
+    "file_path": "/Users/gin/playground/clause_num1/.claude/settings.local.json",
+    "old_string": "{\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npx:*)\",\n      \"Bash(npm install:*)\",\n      \"Skill(update-config)\"\n    ]\n  },\n  \"hooks\": {\n    \"PostToolUse\": [\n      {\n        \"matcher\": \"Write|Edit\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"echo '{\\\"systemMessage\\\": \\\"hello\\\"}'\"\n          },\n          {\n            \"type\": \"command\",\n            \"command\": \"jq . > tool-user.json\"\n          },\n          {\n            \"type\": \"command\",\n            \"command\": \"jq -r '.tool_input.file_path' | {read fp: []}\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+    "new_string": "{\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npx:*)\",\n      \"Bash(npm install:*)\",\n      \"Skill(update-config)\"\n    ]\n  },\n  \"hooks\": {\n    \"PostToolUse\": [\n      {\n        \"matcher\": \"Write|Edit\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"jq -r '.tool_input.file_path // empty' | { read -r f; [ -n \\\"$f\\\" ] && npx prettier --write \\\"$f\\\"; } 2>/dev/null || true\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+    "replace_all": false
+  },
+  "tool_response": {
+    "filePath": "/Users/gin/playground/clause_num1/.claude/settings.local.json",
+    "oldString": "{\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npx:*)\",\n      \"Bash(npm install:*)\",\n      \"Skill(update-config)\"\n    ]\n  },\n  \"hooks\": {\n    \"PostToolUse\": [\n      {\n        \"matcher\": \"Write|Edit\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"echo '{\\\"systemMessage\\\": \\\"hello\\\"}'\"\n          },\n          {\n            \"type\": \"command\",\n            \"command\": \"jq . > tool-user.json\"\n          },\n          {\n            \"type\": \"command\",\n            \"command\": \"jq -r '.tool_input.file_path' | {read fp: []}\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+    "newString": "{\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npx:*)\",\n      \"Bash(npm install:*)\",\n      \"Skill(update-config)\"\n    ]\n  },\n  \"hooks\": {\n    \"PostToolUse\": [\n      {\n        \"matcher\": \"Write|Edit\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"jq -r '.tool_input.file_path // empty' | { read -r f; [ -n \\\"$f\\\" ] && npx prettier --write \\\"$f\\\"; } 2>/dev/null || true\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+    "originalFile": "{\n  \"permissions\": {\n    \"allow\": [\n      \"Bash(npx:*)\",\n      \"Bash(npm install:*)\",\n      \"Skill(update-config)\"\n    ]\n  },\n  \"hooks\": {\n    \"PostToolUse\": [\n      {\n        \"matcher\": \"Write|Edit\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"echo '{\\\"systemMessage\\\": \\\"hello\\\"}'\"\n          },\n          {\n            \"type\": \"command\",\n            \"command\": \"jq . > tool-user.json\"\n          },\n          {\n            \"type\": \"command\",\n            \"command\": \"jq -r '.tool_input.file_path' | {read fp: []}\"\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 13,
+        "oldLines": 15,
+        "newStart": 13,
+        "newLines": 7,
+        "lines": [
+          "         \"hooks\": [",
+          "           {",
+          "             \"type\": \"command\",",
+          "-            \"command\": \"echo '{\\\"systemMessage\\\": \\\"hello\\\"}'\"",
+          "-          },",
+          "-          {",
+          "-            \"type\": \"command\",",
+          "-            \"command\": \"jq . > tool-user.json\"",
+          "-          },",
+          "-          {",
+          "-            \"type\": \"command\",",
+          "-            \"command\": \"jq -r '.tool_input.file_path' | {read fp: []}\"",
+          "+            \"command\": \"jq -r '.tool_input.file_path // empty' | { read -r f; [ -n \\\"$f\\\" ] && npx prettier --write \\\"$f\\\"; } 2>/dev/null || true\"",
+          "           }",
+          "         ]",
+          "       }"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "tool_use_id": "toolu_0187dP4Dt4WyfzFwuzUqW3kw"
+}
